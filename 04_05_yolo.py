@@ -139,7 +139,7 @@ while cv2.waitKey(1) < 0:
     postprocess(frame, outp)
 
     # Write the frame with the detection boxes
-    if (args.image):
+    if args.image:
         cv2.imwrite(outputFile, frame.astype(np.uint8))
     else:
         vid_writer.write(frame.astype(np.uint8))
