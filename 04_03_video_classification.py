@@ -15,6 +15,8 @@ if not cap.isOpened():
 # loop through all video frames and calculate top five class predictions
 while True:
     ret, frame = cap.read()
+    if not ret:
+        break
     # create a blob from current frame - image size defined in synset_words.txt
     blob = cv2.dnn.blobFromImage(frame, 1, (224, 224))
     # the blob as input for inference engine
@@ -30,12 +32,8 @@ while True:
         cv2.putText(frame, frame_text, (0, 25 + 40 * row), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
         row += 1
 
-    if ret:
-        cv2.imshow('Frame', frame)
-
-        if cv2.waitKey(25) & 0xFF == 27:
-            break
-    else:
+    cv2.imshow('Frame', frame)
+    if cv2.waitKey(25) & 0xFF == 27:
         break
 
 cap.release()

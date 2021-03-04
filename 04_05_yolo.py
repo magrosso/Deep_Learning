@@ -95,7 +95,7 @@ def postprocess(frame, outp):
 
 
 outputFile = "YOLOv3_output.avi"
-if (args.image):
+if args.image:
     # Open the image file
     if not os.path.isfile(args.image):
         print("Input image file ", args.image, " doesn't exist")
@@ -111,7 +111,7 @@ else:
     outputFile = args.video[:-4] + '_YOLOv3_output.avi'
 
 # Get the video writer initialized to save the output video
-if (not args.image):
+if not args.image:
     vid_writer = cv2.VideoWriter(outputFile, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 30,
                                  (round(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), round(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))))
 
